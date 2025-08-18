@@ -1,111 +1,82 @@
 🏦 Core Banking Application
++ A Monolithic Spring Boot Banking App with MySQL +
 
-A Spring Boot Monolithic Banking Application that manages customers, accounts, and transactions with secure authentication, MySQL database integration, and industry-standard validations.
-
-🚀 Features
-🔑 Key Features
-
-Entity Management: Customer, Account, and Transaction entities with JPA relationships
-
-Layered Architecture: Controller → Service → Repository pattern
-
-Security: Spring Security with Basic Authentication
-
-Validation: Bean Validation (JSR-303) for inputs
-
-Exception Handling: Global exception handler with custom exceptions
-
-Database: MySQL integration with schema & sample data
+✨ Features
+Key Features:
+  ✔ Entity Management (Customer, Account, Transaction)
+  ✔ Layered Architecture (Controller → Service → Repository)
+  ✔ Spring Security (Basic Authentication)
+  ✔ Validation (JSR-303 Bean Validation)
+  ✔ Global Exception Handling
+  ✔ MySQL Integration (Schema + Sample Data)
 
 💳 Core Banking Operations
+# Customer Management
+- Create, Read, Update, Delete Customers  
 
-Customer Management: Create, Read, Update, Delete customers with validations
+# Account Management
+- Savings, Current, FD, RD Accounts  
 
-Account Management: Support for multiple account types (Savings, Current, FD, RD)
+# Transactions
+- Deposit, Withdraw, Transfer  
+- Balance Validation & Audit Trails  
 
-Transaction Processing: Deposit, Withdrawal, Transfer with balance validation
+# Security
+- Block / Unblock Accounts
 
-Account Security: Block/Unblock account functionality
-
-Audit Trails: Track and validate transactions
-
-🛠️ Tech Stack
-
-Framework: Spring Boot 3.2.0
-
-Database: MySQL 8.0 with JPA/Hibernate
-
-Security: Spring Security (Basic Auth)
-
-Validation: Bean Validation (JSR-303)
-
-Build Tool: Maven
-
-Java Version: 17
+🛠 Tech Stack
+Java Version     : 17
+Framework        : Spring Boot 3.2.0
+Database         : MySQL 8.0
+ORM              : Hibernate / JPA
+Security         : Spring Security (Basic Auth)
+Build Tool       : Maven
 
 📡 API Endpoints
-Customer APIs
-POST   /api/v1/customers  
-GET    /api/v1/customers/{id}  
-PUT    /api/v1/customers/{id}  
-DELETE /api/v1/customers/{id}  
+# Customer APIs
+POST   /api/v1/customers
+GET    /api/v1/customers/{id}
+PUT    /api/v1/customers/{id}
+DELETE /api/v1/customers/{id}
 
-Account APIs
-POST   /api/v1/accounts  
-GET    /api/v1/accounts/{id}  
-PUT    /api/v1/accounts/{id}  
-DELETE /api/v1/accounts/{id}  
+# Account APIs
+POST   /api/v1/accounts
+GET    /api/v1/accounts/{id}
+PUT    /api/v1/accounts/{id}
+DELETE /api/v1/accounts/{id}
 
-Transaction APIs
-POST   /api/v1/transactions/deposit  
-POST   /api/v1/transactions/withdraw  
-POST   /api/v1/transactions/transfer  
+# Transaction APIs
+POST   /api/v1/transactions/deposit
+POST   /api/v1/transactions/withdraw
+POST   /api/v1/transactions/transfer
 
-⚙️ Setup & Installation
-
-Clone the repository
-
+⚙️ Installation
+# 1. Clone the repo
 git clone https://github.com/your-username/banking-app.git
 cd banking-app
 
+# 2. Update MySQL credentials in application.yml
+spring.datasource.url=jdbc:mysql://localhost:3306/banking_db
+spring.datasource.username=root
+spring.datasource.password=your_password
 
-Configure MySQL database
-Update application.yml or application.properties with your MySQL credentials:
-
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/banking_db
-    username: root
-    password: your_password
-
-
-Build and run the project
-
+# 3. Build & Run
 mvn clean install
 mvn spring-boot:run
 
-
-Access the app
-
-Base URL: http://localhost:8080/api/v1
-
 🔐 Authentication
+Auth Type: Basic Authentication
+Setup    : application.yml or Database
 
-Uses Basic Authentication
-
-Configure users in application.yml or via database
-
-📌 Future Enhancements
-
-JWT-based authentication
-
-Microservices architecture refactor
-
-Role-based access control (Admin, Customer)
-
-Frontend integration with React.js
+🚀 Roadmap
++ Future Enhancements:
+- JWT Authentication
+- Role-based Access (Admin/Customer)
+- React.js Frontend
+- Microservices Refactor
 
 👨‍💻 Author
-
-Mohammad Dilnawaj
-Java | Spring Boot | React.js | SQL
+Name     : Mohammad Dilnawaj
+Skills   : Java | Spring Boot | React.js | SQL
+LinkedIn : https://linkedin.com/in/yourprofile
+GitHub   : https://github.com/your-username
