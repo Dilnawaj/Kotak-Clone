@@ -64,10 +64,3 @@ public class Account {
     }
 }
 
-enum AccountType {
-    SAVINGS, CURRENT, FIXED_DEPOSIT, RECURRING_DEPOSIT
-}
-
-public enum AccountStatus {
-    ACTIVE, INACTIVE, BLOCKED, CLOSED
-}

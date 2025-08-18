@@ -51,10 +51,3 @@ public class Transaction {
     }
 }
 
-public enum TransactionType {
-    DEPOSIT, WITHDRAWAL, TRANSFER, PAYMENT
-}
-
-public enum TransactionStatus {
-    PENDING, COMPLETED, FAILED, CANCELLED
-}

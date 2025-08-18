@@ -1,10 +1,13 @@
 package com.banking.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import javax.validation.constraints.*;
-
+import jakarta.validation.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

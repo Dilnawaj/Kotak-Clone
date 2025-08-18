@@ -1,8 +1,8 @@
 package com.banking.service;
 
 import com.banking.model.Account;
-import com.banking.model.Customer;
 import com.banking.model.AccountType;
+import com.banking.model.Customer;
 import com.banking.model.AccountStatus;
 import com.banking.dto.AccountDTO;
 import com.banking.repository.AccountRepository;
