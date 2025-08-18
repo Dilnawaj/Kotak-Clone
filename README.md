@@ -1,4 +1,4 @@
-🏦 Core Banking Application
+#🏦 Core Banking Application
 + A Monolithic Spring Boot Banking App with MySQL +
 
 ✨ Features
