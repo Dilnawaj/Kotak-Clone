@@ -8,7 +8,7 @@ Key Features:
   ✔ Spring Security (Basic Authentication)
   ✔ Validation (JSR-303 Bean Validation)
   ✔ Global Exception Handling
-  ✔ MySQL Integration (Schema + Sample Data)
+  ✔ MySQL Integration 
 
 💳 Core Banking Operations
 # Customer Management
@@ -50,33 +50,9 @@ POST   /api/v1/transactions/deposit
 POST   /api/v1/transactions/withdraw
 POST   /api/v1/transactions/transfer
 
-⚙️ Installation
-# 1. Clone the repo
-git clone https://github.com/your-username/banking-app.git
-cd banking-app
 
-# 2. Update MySQL credentials in application.yml
-spring.datasource.url=jdbc:mysql://localhost:3306/banking_db
-spring.datasource.username=root
-spring.datasource.password=your_password
-
-# 3. Build & Run
-mvn clean install
-mvn spring-boot:run
-
-🔐 Authentication
-Auth Type: Basic Authentication
-Setup    : application.yml or Database
-
-🚀 Roadmap
-+ Future Enhancements:
-- JWT Authentication
-- Role-based Access (Admin/Customer)
-- React.js Frontend
-- Microservices Refactor
 
 👨‍💻 Author
 Name     : Mohammad Dilnawaj
 Skills   : Java | Spring Boot | React.js | SQL
-LinkedIn : https://linkedin.com/in/yourprofile
-GitHub   : https://github.com/your-username
+
