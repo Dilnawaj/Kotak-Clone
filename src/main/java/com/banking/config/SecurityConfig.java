@@ -26,7 +26,7 @@ public class SecurityConfig {
                         .requestMatchers("/customers/**", "/accounts/**", "/transactions/**").authenticated()
                         .anyRequest().authenticated()
                 )
-                .httpBasic();
+                .httpBasic().disable();
 
         return http.build();
     }
