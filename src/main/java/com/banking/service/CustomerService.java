@@ -4,6 +4,7 @@ import com.banking.model.Customer;
 import com.banking.dto.CustomerDTO;
 import com.banking.repository.CustomerRepository;
 import com.banking.exception.CustomerNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,8 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
     public CustomerDTO createCustomer(CustomerDTO customerDTO) {
         if (customerRepository.existsByEmail(customerDTO.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
@@ -47,6 +50,8 @@ public class CustomerService {
         Customer existingCustomer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found with ID: " + customerId));
 
+
+
         existingCustomer.setFirstName(customerDTO.getFirstName());
         existingCustomer.setLastName(customerDTO.getLastName());
         existingCustomer.setAddress(customerDTO.getAddress());
@@ -64,27 +69,12 @@ public class CustomerService {
     }
 
     private Customer convertToEntity(CustomerDTO dto) {
-        Customer customer = new Customer();
-        customer.setFirstName(dto.getFirstName());
-        customer.setLastName(dto.getLastName());
-        customer.setEmail(dto.getEmail());
-        customer.setPhoneNumber(dto.getPhoneNumber());
-        customer.setAddress(dto.getAddress());
-        customer.setAadharNumber(dto.getAadharNumber());
-        customer.setPanNumber(dto.getPanNumber());
-        return customer;
-    }
+        return  this.modelMapper.map(dto,Customer.class);
+
+        }
 
     private CustomerDTO convertToDTO(Customer customer) {
-        CustomerDTO dto = new CustomerDTO();
-        dto.setCustomerId(customer.getCustomerId());
-        dto.setFirstName(customer.getFirstName());
-        dto.setLastName(customer.getLastName());
-        dto.setEmail(customer.getEmail());
-        dto.setPhoneNumber(customer.getPhoneNumber());
-        dto.setAddress(customer.getAddress());
-        dto.setAadharNumber(customer.getAadharNumber());
-        dto.setPanNumber(customer.getPanNumber());
-        return dto;
+        return  this.modelMapper.map(customer,CustomerDTO.class);
+
     }
 }

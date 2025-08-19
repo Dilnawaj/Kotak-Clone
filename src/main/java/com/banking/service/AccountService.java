@@ -9,6 +9,7 @@ import com.banking.repository.AccountRepository;
 import com.banking.repository.CustomerRepository;
 import com.banking.exception.AccountNotFoundException;
 import com.banking.exception.CustomerNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,9 @@ public class AccountService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public AccountDTO createAccount(Long customerId, AccountDTO accountDTO) {
         Customer customer = customerRepository.findById(customerId)
@@ -90,12 +94,11 @@ public class AccountService {
 
     private AccountDTO convertToDTO(Account account) {
         AccountDTO dto = new AccountDTO();
-        dto.setAccountId(account.getAccountId());
-        dto.setAccountNumber(account.getAccountNumber());
+
+        this.modelMapper.map(account,AccountDTO.class);
+
         dto.setAccountType(account.getAccountType().toString());
-        dto.setBalance(account.getBalance());
-        dto.setIfscCode(account.getIfscCode());
-        dto.setBranchName(account.getBranchName());
+
         dto.setStatus(account.getStatus().toString());
         dto.setCustomerId(account.getCustomer().getCustomerId());
         return dto;

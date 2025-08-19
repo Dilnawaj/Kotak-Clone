@@ -8,6 +8,7 @@ import com.banking.dto.AuthResponseDTO;
 import com.banking.model.UserRole;
 import com.banking.repository.CustomerRepository;
 import com.banking.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,6 +34,9 @@ public class AuthService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+@Autowired
+private ModelMapper modelMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
@@ -48,23 +52,15 @@ public class AuthService implements UserDetailsService {
             throw new IllegalArgumentException("Email already exists");
         }
 
-        // Create customer first
-        Customer customer = new Customer();
-        customer.setFirstName(registerDTO.getFirstName());
-        customer.setLastName(registerDTO.getLastName());
-        customer.setEmail(registerDTO.getEmail());
-        customer.setPhoneNumber(registerDTO.getPhoneNumber());
-        customer.setAddress(registerDTO.getAddress());
-        customer.setAadharNumber(registerDTO.getAadharNumber());
-        customer.setPanNumber(registerDTO.getPanNumber());
 
+Customer customer =this.modelMapper.map(registerDTO,Customer.class);
         Customer savedCustomer = customerRepository.save(customer);
 
-        // Create user account
-        User user = new User();
-        user.setUsername(registerDTO.getUsername());
+
+      User user=  this.modelMapper.map(registerDTO,User.class);
+
         user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
-        user.setEmail(registerDTO.getEmail());
+
         user.setRole(UserRole.CUSTOMER);
         user.setCustomer(savedCustomer);
 
@@ -87,7 +83,7 @@ public class AuthService implements UserDetailsService {
             throw new IllegalArgumentException("Invalid credentials");
         }
 
-        // Update last login
+       
         user.setLastLoginAt(LocalDateTime.now());
         userRepository.save(user);
 
