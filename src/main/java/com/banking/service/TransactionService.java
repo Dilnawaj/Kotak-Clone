@@ -27,7 +27,7 @@ public class TransactionService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public TransactionDTO deposit(String accountNumber, BigDecimal amount, String description) {
+    public TransactionDTO depositMoney(String accountNumber, BigDecimal amount, String description) {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account not found: " + accountNumber));
 
@@ -35,6 +35,7 @@ public class TransactionService {
         transaction.setTransactionReference(generateTransactionReference());
         transaction.setTransactionType(TransactionType.DEPOSIT);
         transaction.setAmount(amount);
+        System.out.println("Transaction hai "+ amount);
         transaction.setDescription(description);
         transaction.setStatus(TransactionStatus.COMPLETED);
         transaction.setToAccount(account);
@@ -47,7 +48,7 @@ public class TransactionService {
         return convertToDTO(savedTransaction);
     }
 
-    public TransactionDTO withdraw(String accountNumber, BigDecimal amount, String description) {
+    public TransactionDTO withdrawMoey(String accountNumber, BigDecimal amount, String description) {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account not found: " + accountNumber));
 
@@ -71,7 +72,7 @@ public class TransactionService {
         return convertToDTO(savedTransaction);
     }
 
-    public TransactionDTO transfer(String fromAccountNumber, String toAccountNumber,
+    public TransactionDTO transferMoney(String fromAccountNumber, String toAccountNumber,
                                    BigDecimal amount, String description) {
         Account fromAccount = accountRepository.findByAccountNumber(fromAccountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("From account not found: " + fromAccountNumber));

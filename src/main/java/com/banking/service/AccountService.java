@@ -69,7 +69,7 @@ public class AccountService {
     public AccountDTO updateAccountBalance(String accountNumber, BigDecimal amount) {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account not found with number: " + accountNumber));
-
+        System.out.println("Amount hai "+amount);
         account.setBalance(account.getBalance().add(amount));
         Account updatedAccount = accountRepository.save(account);
         return convertToDTO(updatedAccount);

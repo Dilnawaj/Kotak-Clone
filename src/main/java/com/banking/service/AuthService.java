@@ -83,7 +83,7 @@ Customer customer =this.modelMapper.map(registerDTO,Customer.class);
             throw new IllegalArgumentException("Invalid credentials");
         }
 
-       
+
         user.setLastLoginAt(LocalDateTime.now());
         userRepository.save(user);
 
@@ -99,7 +99,7 @@ Customer customer =this.modelMapper.map(registerDTO,Customer.class);
     public void changePassword(String username, String oldPassword, String newPassword) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
+System.out.println("yaha dekhte hai");
         if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
             throw new IllegalArgumentException("Invalid current password");
         }
